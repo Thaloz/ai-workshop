@@ -1,11 +1,14 @@
 import { expect, test } from "@playwright/test";
 
-test("shows the manager workflow and its human decision gate", async ({ page }) => {
+test("reviews and approves a client follow-up plan", async ({ page }) => {
   await page.goto("/");
-
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Manager workflow starter");
-  await page.getByRole("button", { name: "Review request" }).click();
-
-  await expect(page.getByRole("heading", { name: "Would you accept this work?" })).toBeFocused();
-  await expect(page.getByText("Human owner is named")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Client happiness");
+  await page.getByRole("button", { name: "Review Riverbank Health" }).click();
+  await expect(page.getByLabel("Riverbank Health review")).toBeFocused();
+  await expect(page.getByText("Average response time increased")).toBeVisible();
+  await page.getByRole("button", { name: "Approve follow-up plan" }).click();
+  await expect(page.getByRole("status")).toHaveText("Plan approved. No client message was sent.");
+  await expect(
+    page.getByText("Riverbank Health plan approved for manager follow-up"),
+  ).toBeVisible();
 });

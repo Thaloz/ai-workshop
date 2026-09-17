@@ -1,18 +1,21 @@
-export type WorkshopCopy = {
-  area: string;
-  title: string;
-  description: string;
-  primaryAction: string;
-  labels: {
-    input: string;
-    evidence: string;
-    decision: string;
-  };
+export type HealthState = "healthy" | "watch" | "at-risk";
+
+export type Client = {
+  id: string;
+  name: string;
+  accountLead: string;
+  health: HealthState;
+  score: number;
+  trend: number;
+  lastContact: string;
+  summary: string;
+  evidence: string[];
+  nextAction: string;
 };
 
-export type ReviewRule = {
+export type ActivityItem = {
   id: string;
-  label: string;
+  title: string;
   detail: string;
-  state: "ready" | "review" | "missing";
+  time: string;
 };
