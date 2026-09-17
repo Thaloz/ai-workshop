@@ -1,0 +1,26 @@
+{
+  "name": "thaloz-ai-workshop-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "check": "vp check",
+    "build": "vp build",
+    "test:e2e": "playwright test",
+    "setup:github": "node scripts/setup-github.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite-plus": "0.3.2"
+  },
+  "packageManager": "pnpm@10.17.1"
+}
