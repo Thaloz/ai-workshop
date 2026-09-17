@@ -9,9 +9,9 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "vp dev --host 127.0.0.1 --port 4173",
+    command: "./node_modules/.bin/vite --host 127.0.0.1 --port 4173",
     url: "http://127.0.0.1:4173",
-    reuseExistingServer: true,
+    reuseExistingServer: false,
     timeout: 60_000,
   },
 });

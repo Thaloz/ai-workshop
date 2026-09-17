@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { reviewRules } from "./workshop/rules";
 import { workshopCopy } from "./workshop/content";
 
@@ -8,13 +9,21 @@ const stateLabels = {
 } as const;
 
 export default function App() {
+  const reviewTitleRef = useRef<HTMLHeadingElement>(null);
+
+  const openReview = () => {
+    reviewTitleRef.current?.focus();
+  };
+
   return (
     <main>
       <header className="hero">
         <span className="eyebrow">{workshopCopy.area}</span>
         <h1>{workshopCopy.title}</h1>
         <p>{workshopCopy.description}</p>
-        <button type="button">{workshopCopy.primaryAction}</button>
+        <button type="button" onClick={openReview}>
+          {workshopCopy.primaryAction}
+        </button>
       </header>
 
       <section className="workflow" aria-label="Workflow">
@@ -38,7 +47,9 @@ export default function App() {
       <section className="review-panel" aria-labelledby="review-title">
         <div>
           <span className="eyebrow">Inspection gate</span>
-          <h2 id="review-title">Would you accept this work?</h2>
+          <h2 id="review-title" ref={reviewTitleRef} tabIndex={-1}>
+            Would you accept this work?
+          </h2>
         </div>
         <div className="rules">
           {reviewRules.map((rule) => (
